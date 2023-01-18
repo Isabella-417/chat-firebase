@@ -1,10 +1,11 @@
+import React from 'react'
 import styled from 'styled-components'
 
 import { Button, Greeting } from '../components'
 
 import Google from '../assets/images/google-logo.svg'
 
-export const Chat = () => {
+export const Chat = (): JSX.Element => {
   return (
     <Background>
       <Greeting
