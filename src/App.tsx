@@ -1,10 +1,8 @@
-import React from 'react';
-import { Chat } from './pages/Chat';
+import React from 'react'
+import { Chat } from './pages/Chat'
 
 function App() {
-  return (
-   <Chat />
-  );
+  return <Chat />
 }
 
-export default App;
+export default App

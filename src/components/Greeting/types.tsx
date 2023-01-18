@@ -1,9 +1,9 @@
 export type GreetingProps = {
-    message : string,
-    emoji : string,
-    background : string,
+  message: string
+  emoji: string
+  background: string
 }
 
 export type GreetingContainerProps = {
-    background : string,
+  background: string
 }

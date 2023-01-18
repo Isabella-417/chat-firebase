@@ -1,28 +1,38 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent } from 'react'
 
-import styled from 'styled-components';
+import styled from 'styled-components'
 
-import { ButtonProps, ThumbNailProps } from './types';
+import { ButtonProps, ThumbNailProps } from './types'
 
-export const  Button: FunctionComponent<ButtonProps> = ({ icon, text, initialColor, finalColor, thumbnailColor}) =>  (
-<ButtonStyle initialColor={initialColor} finalColor={finalColor} thumbnailColor={''}>
+export const Button: FunctionComponent<ButtonProps> = ({
+  icon,
+  text,
+  initialColor,
+  finalColor,
+  thumbnailColor
+}) => (
+  <ButtonStyle
+    initialColor={initialColor}
+    finalColor={finalColor}
+    thumbnailColor={''}
+  >
     <ThumbNailContainer thumbnailColor={thumbnailColor}>
-          <ThumbNail src={icon} alt="logo" />
-    </ThumbNailContainer> 
-        {text}
-</ButtonStyle>);
-
+      <ThumbNail src={icon} alt="logo" />
+    </ThumbNailContainer>
+    {text}
+  </ButtonStyle>
+)
 
 const ThumbNail = styled.img`
-  Width: 2em;
+  width: 2em;
   height: 2em;
-`;
+`
 
 const ThumbNailContainer = styled.span<ThumbNailProps>`
-  background-color: ${props => props.thumbnailColor};
+  background-color: ${(props) => props.thumbnailColor};
   padding: 0.8em;
   margin-right: 1em;
-`;
+`
 
 const ButtonStyle = styled.button<ButtonProps>`
   display: flex;
@@ -32,14 +42,13 @@ const ButtonStyle = styled.button<ButtonProps>`
   color: white;
   font-weight: bold;
   text-align: center;
-  background-color: ${props => props.initialColor};
-  border: 1px solid ${props => props.initialColor};
+  background-color: ${(props) => props.initialColor};
+  border: 1px solid ${(props) => props.initialColor};
   border-radius: 3px;
-  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px; 
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
   :hover {
-    background-color: ${props => props.finalColor};
-    color: ${props => props.initialColor};
-    border: 1px solid ${props => props.finalColor};
+    background-color: ${(props) => props.finalColor};
+    color: ${(props) => props.initialColor};
+    border: 1px solid ${(props) => props.finalColor};
   }
 `
-

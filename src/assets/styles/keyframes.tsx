@@ -1,4 +1,4 @@
-import { keyframes } from 'styled-components';
+import { keyframes } from 'styled-components'
 
 export const waveAnimation = keyframes`
   0% { transform: rotate( 0.0deg) }
