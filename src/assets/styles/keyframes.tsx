@@ -10,3 +10,25 @@ export const waveAnimation = keyframes`
   60% { transform: rotate( 0.0deg) }
   100% { transform: rotate( 0.0deg) }
 `
+
+export const moveIn = keyframes`
+  0% {
+    transform: translate(-50%, 100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(-50%, -50%);
+    opacity: 1;
+  }
+`
+
+export const moveOut = keyframes`
+  0% {
+    transform: translate(-50%, -50%);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, 100%);
+    opacity: 0;
+  }
+`

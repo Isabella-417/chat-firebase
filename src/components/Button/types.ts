@@ -4,6 +4,7 @@ export type ButtonProps = {
   icon?: string
   text?: string
   thumbnailColor: string
+  onClick: () => void
 }
 
 export type ThumbNailProps = {

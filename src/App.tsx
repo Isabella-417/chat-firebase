@@ -1,7 +1,7 @@
 import React from 'react'
-import { Chat } from './pages/Chat'
+import { Chat } from 'pages/Chat'
 
-function App() {
+const App = (): JSX.Element => {
   return <Chat />
 }
 

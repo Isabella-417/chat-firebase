@@ -9,12 +9,14 @@ export const Button: FunctionComponent<ButtonProps> = ({
   text,
   initialColor,
   finalColor,
-  thumbnailColor
+  thumbnailColor,
+  onClick
 }) => (
   <ButtonStyle
     initialColor={initialColor}
     finalColor={finalColor}
     thumbnailColor={''}
+    onClick={onClick}
   >
     <ThumbNailContainer thumbnailColor={thumbnailColor}>
       <ThumbNail src={icon} alt="logo" />

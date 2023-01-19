@@ -1,11 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 
-import { Button, Greeting } from '../components'
+import { Button, Greeting, Modal, Navbar } from 'components'
 
-import Google from '../assets/images/google-logo.svg'
+import Google from 'assets/images/google-logo.svg'
 
 export const Chat = (): JSX.Element => {
+  const [showModal, setShowModal] = useState(false)
+
+  const handleShowModal = (): void => {
+    setShowModal((prev) => !prev)
+  }
+
   return (
     <Background>
       <Greeting
@@ -19,7 +25,13 @@ export const Chat = (): JSX.Element => {
         initialColor="#4285F4"
         finalColor="#fff"
         thumbnailColor={'#fff'}
+        onClick={handleShowModal}
       />
+      {showModal && (
+        <Modal>
+          <Navbar />
+        </Modal>
+      )}
     </Background>
   )
 }
@@ -30,5 +42,5 @@ const Background = styled.section`
   justify-content: space-around;
   align-items: left;
   margin: 1.5em;
-  padding: 0.5em;
+  padding: 0.1em;
 `

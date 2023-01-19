@@ -11,5 +11,7 @@
     "sourceType": "module"
   },
   "plugins": ["react"],
-  "rules": {}
+  "rules": {
+    "strict-boolean-expressions": [0, "allow-boolean-or-undefined"]
+  }
 }
