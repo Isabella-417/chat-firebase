@@ -1,15 +1,22 @@
 import React from 'react'
 import styled from 'styled-components'
 
-export const Navbar = (): JSX.Element => {
+interface Props {
+  title: string
+  signOut: () => void
+}
+
+export const Navbar = (user: Props): JSX.Element => {
+  const { title, signOut } = user
   return (
     <NavbarContainer>
       <MainContainer>
-        <ProfileElement className="container">
-          <ProfileImage src="https://i.imgur.com/1Q1Z1Zy.png" alt="profile" />
-          <p>Name</p>
+        <ProfileElement className="container">{title}</ProfileElement>
+        <ProfileElement>
+          <button onClick={signOut} type="button">
+            Sign out
+          </button>
         </ProfileElement>
-        <ProfileElement>Logout</ProfileElement>
       </MainContainer>
     </NavbarContainer>
   )
@@ -36,7 +43,7 @@ export const ProfileElement = styled.li`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 7em;
+    width: 26em;
   }
 `
 
