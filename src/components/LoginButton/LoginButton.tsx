@@ -4,7 +4,7 @@ import styled from 'styled-components'
 
 import { ButtonProps, ThumbNailProps } from './types'
 
-export const Button: FunctionComponent<ButtonProps> = ({
+export const LoginButton: FunctionComponent<ButtonProps> = ({
   icon,
   text,
   initialColor,

@@ -7,7 +7,7 @@ export interface AuthProvider {
 
 const provider = new GoogleAuthProvider()
 export const AuthProviderGoogle: AuthProvider = {
-  signRedirect: () => signInWithRedirect(auth, provider)
+  signRedirect: async () => await signInWithRedirect(auth, provider)
 }
 
 export interface User {

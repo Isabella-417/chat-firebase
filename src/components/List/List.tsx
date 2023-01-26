@@ -2,7 +2,7 @@ import React from 'react'
 import { Message } from 'components/Message'
 import { User } from 'lib/interfaces'
 import styled from 'styled-components'
-
+import { sizes } from 'assets/styles/devices'
 interface Props {
   elements: User[]
 }
@@ -20,7 +20,13 @@ export const List = (data: Props): JSX.Element => {
 }
 
 export const ListContainer = styled.main`
-  padding: 0.5em;
-  margin: 0.5em;
-  height: 80%;
+  height: 72vh;
+  overflow-y: scroll;
+  max-height: 75%;
+  @media ${sizes.desktop} {
+    max-height: 70vh;
+  }
+  @media ${sizes.tablet} {
+    max-height: 80vh;
+  }
 `

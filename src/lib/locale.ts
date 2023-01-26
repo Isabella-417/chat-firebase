@@ -1,4 +1,4 @@
 export const Locale = {
-  greeting: 'Welcome 🌎',
+  greeting: 'Welcome',
   sign_out: 'Sign out'
 }

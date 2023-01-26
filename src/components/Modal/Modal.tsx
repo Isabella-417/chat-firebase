@@ -36,17 +36,20 @@ const ModalContainer = styled(motion.section)`
   right: 2em;
   width: 65vw;
   height: 90vh;
-  background-color: rgb(31, 35, 43, 0.85);
+  background-color: white;
   border-radius: 1em;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
     rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
     rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 
-  @media ${sizes.mobile} {
+  @media ${sizes.mobile}, ${sizes.extraSmallMobile} {
     top: 50%;
     left: 50%;
     right: 50%;
     transform: translate(-50%, -50%) !important;
-    width: 90vw;
+    width: 100vw;
+  }
+  @media ${sizes.extraSmallMobile} {
+    margin: 1em;
   }
 `

@@ -2,7 +2,14 @@ import React from 'react'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import styled from 'styled-components'
 
-import { AnswerBar, Button, Greeting, List, Modal, Navbar } from 'components'
+import {
+  AnswerBar,
+  LoginButton,
+  Greeting,
+  List,
+  Modal,
+  Navbar
+} from 'components'
 import { AuthProviderGoogle } from 'lib/interfaces'
 import { auth } from 'lib/firebase'
 import { Locale } from 'lib/locale'
@@ -27,22 +34,25 @@ export const Chat = (): JSX.Element => {
   const userSignedIn = email != null && email !== ''
   return (
     <Background>
-      <Greeting
-        message={Locale.greeting}
-        emoji={'👋🏻'}
-        background={'background3.svg'}
-      />
-      <Button
+      {!userSignedIn && (
+        <Greeting
+          message={Locale.greeting}
+          emoji={'👋🏻'}
+          background={'background3.svg'}
+        />
+      )}
+
+      {!userSignedIn && <LoginButton
         icon={Google}
         text={'Sign up with google'}
         initialColor="#4285F4"
         finalColor="#fff"
         thumbnailColor={'#fff'}
         onClick={handleShowModal}
-      />
+      />}
       {userSignedIn && (
         <Modal>
-          <Navbar title="Chat" signOut={handleSignOut} />
+          <Navbar title="🌎💭" signOut={handleSignOut} />
           <List
             elements={[
               {
@@ -50,7 +60,7 @@ export const Chat = (): JSX.Element => {
                 name: displayName ?? '',
                 email,
                 currentMessage:
-                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
               }
             ]}
           />

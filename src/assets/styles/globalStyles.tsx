@@ -1,14 +1,13 @@
 import { createGlobalStyle } from 'styled-components'
-
 const GlobalStyle = createGlobalStyle`
-
+  * {
+    font-family: 'Prompt', sans-serif;
+    font-size: 16px;    
+  } 
   body {
-    background-image: linear-gradient(to right, rgba(109, 179, 242, .6), rgba(109, 179, 242, .6)), url('chat.jpg');
-    background-size: cover, contain;
-    background-position: center, right;
-    background-repeat: no-repeat, no-repeat;
+    background: rgb(124,101,169);
+    background: radial-gradient(circle, rgba(124,101,169,1) 0%, rgba(150,212,202,1) 100%);
     box-sizing: border-box;
-    font-family: Open-Sans, Helvetica;
     margin: 0;
     padding: 0;
     width: 100vw;
