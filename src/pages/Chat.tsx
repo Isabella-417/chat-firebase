@@ -1,6 +1,8 @@
 import React from 'react'
+
 import { useAuthState } from 'react-firebase-hooks/auth'
 import styled from 'styled-components'
+import { useFirebase } from 'hooks/useFirebase'
 
 import {
   AnswerBar,
@@ -18,6 +20,19 @@ import Google from 'assets/images/google-logo.svg'
 
 export const Chat = (): JSX.Element => {
   const [user] = useAuthState(auth)
+  const messages = useFirebase()
+
+  const msjs = messages.map((message) => {
+    const { avatar, text, name, id, uid } = message
+    return {
+      picture: avatar,
+      name: name,
+      currentMessage: text,
+      id: id,
+      uid: uid
+    }
+  })
+
   const handleSignOut = (): void => {
     auth.signOut().catch((err) => {
       console.error(err)
@@ -30,7 +45,7 @@ export const Chat = (): JSX.Element => {
       console.error(err)
     })
   }
-  const { displayName, email, photoURL } = user ?? {}
+  const { email, uid } = user ?? {}
   const userSignedIn = email != null && email !== ''
   return (
     <Background>
@@ -42,28 +57,20 @@ export const Chat = (): JSX.Element => {
         />
       )}
 
-      {!userSignedIn && <LoginButton
-        icon={Google}
-        text={'Sign up with google'}
-        initialColor="#4285F4"
-        finalColor="#fff"
-        thumbnailColor={'#fff'}
-        onClick={handleShowModal}
-      />}
+      {!userSignedIn && (
+        <LoginButton
+          icon={Google}
+          text={'Sign up with google'}
+          initialColor="#4285F4"
+          finalColor="#fff"
+          thumbnailColor={'#fff'}
+          onClick={handleShowModal}
+        />
+      )}
       {userSignedIn && (
         <Modal>
           <Navbar title="🌎💭" signOut={handleSignOut} />
-          <List
-            elements={[
-              {
-                picture: photoURL ?? '',
-                name: displayName ?? '',
-                email,
-                currentMessage:
-                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
-              }
-            ]}
-          />
+          <List elements={msjs} user={uid ?? ''}/>
           <AnswerBar />
         </Modal>
       )}
@@ -75,7 +82,7 @@ const Background = styled.section`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  align-items: left;
+  align-items: center;
   margin: 1.5em;
   padding: 0.1em;
 `

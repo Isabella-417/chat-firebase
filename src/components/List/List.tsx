@@ -1,20 +1,33 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import { Message } from 'components/Message'
 import { User } from 'lib/interfaces'
 import styled from 'styled-components'
 import { sizes } from 'assets/styles/devices'
 interface Props {
   elements: User[]
+  user?: string
 }
 
 export const List = (data: Props): JSX.Element => {
-  const { elements } = data
+  const { elements, user } = data
+  const messagesEndRef = useRef<null | HTMLDivElement>(null)
+
+  const scrollToBottom = (): void => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
+  }
+
+  useEffect(() => {
+    scrollToBottom()
+  }, [elements])
+
   return (
     <ListContainer>
       {elements.map((element) => {
-        const { email } = element
-        return <Message key={email} message={element} />
+        const { id, uid } = element
+        const style = uid === user ? 'left' : 'right'
+        return <Message key={id} message={element} main={style} />
       })}
+      <div ref={messagesEndRef} />
     </ListContainer>
   )
 }

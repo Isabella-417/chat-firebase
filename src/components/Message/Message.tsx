@@ -5,12 +5,17 @@ import { sizes } from 'assets/styles/devices'
 
 interface Props {
   message: User
+  main: string
+}
+
+interface ProfileProps {
+  direction: string
 }
 
 export const Message = (message: Props): JSX.Element => {
   const { picture, name, currentMessage } = message.message
   return (
-    <>
+    <MainContainer direction={message.main}>
       <Profile>
         <ProfileImage src={picture} alt="profile" />
         <EmailInformation>{name}</EmailInformation>
@@ -18,9 +23,18 @@ export const Message = (message: Props): JSX.Element => {
       <MessageContainer>
         <MessageInformation>{currentMessage}</MessageInformation>
       </MessageContainer>
-    </>
+    </MainContainer>
   )
 }
+
+export const MainContainer = styled.div<ProfileProps>`
+  display: flex;
+  flex-direction: column;
+  align-items: ${(props) =>
+    props.direction === 'right' ? 'flex-end' : 'flex-start'};
+  margin: 1em;
+  padding: 0.1em;
+`
 
 export const MessageContainer = styled.div`
   display: flex;
@@ -31,7 +45,7 @@ export const MessageContainer = styled.div`
     rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
   padding: 0.5em;
   margin-left: 4em;
-  max-width: 20em;
+
   word-break: break-all;
   line-height: 1.6;
   @media ${sizes.mobile}, ${sizes.extraSmallMobile} {
@@ -41,8 +55,8 @@ export const MessageContainer = styled.div`
 
 export const Profile = styled.div`
   display: flex;
-  max-width: 9em;
-  justify-content: space-evenly;
+  max-width: 50vw;
+  min-width: 20vw;
 `
 
 export const ProfileImage = styled.img`
@@ -50,6 +64,7 @@ export const ProfileImage = styled.img`
   height: 3em;
   border-radius: 50%;
   padding: 0.2em;
+  margin: 0 1rem;
 `
 
 export const EmailInformation = styled.p`
@@ -61,4 +76,6 @@ export const EmailInformation = styled.p`
 
 export const MessageInformation = styled.p`
   font-size: 1rem;
+  max-width: 50vw;
+  min-width: 10rem;
 `

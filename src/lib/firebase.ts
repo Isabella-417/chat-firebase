@@ -1,6 +1,12 @@
 import { initializeApp } from 'firebase/app'
 import { getAuth } from 'firebase/auth'
-import { getFirestore } from 'firebase/firestore'
+import {
+  getFirestore,
+  addDoc,
+  collection,
+  serverTimestamp
+} from 'firebase/firestore'
+import { UserAuthenticated } from './interfaces'
 
 import {
   API_KEY,
@@ -23,3 +29,14 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig)
 export const auth = getAuth(app)
 export const db = getFirestore(app)
+
+export const sendMessage = async (message: string): Promise<void> => {
+  const { uid, displayName, photoURL } = auth.currentUser as UserAuthenticated
+  await addDoc(collection(db, 'messages'), {
+    text: message,
+    name: displayName,
+    avatar: photoURL,
+    createdAt: serverTimestamp(),
+    uid
+  })
+}
